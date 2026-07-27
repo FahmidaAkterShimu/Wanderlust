@@ -10,8 +10,8 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className='p-3 md:px-6 md:py-3.5 m-4 bg-white relative'>
-            <nav className="max-w-352 mx-auto flex justify-between items-center text-[#0C0B0B]">
+        <div className='absolute top-4 left-0 right-0 z-50 px-4'>
+            <nav className="max-w-352 mx-auto flex justify-between items-center bg-white px-6 py-3.5 text-[#0C0B0B]">
 
                 {/* Left */}
                 {/* Desktop Menu */}
