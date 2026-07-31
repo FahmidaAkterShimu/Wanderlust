@@ -22,11 +22,11 @@ const DestinationCard = ({ destination }) => {
             </div>
 
             <div className='flex justify-between items-center mb-2'>
-                <p className='text-2xl font-medium'>{destinationName}</p>
-                <p className='
+                <h4 className='text-2xl font-medium'>{destinationName}</h4>
+                <h4 className='
                 text-2xl font-medium'>
                     ${price}<span className='text-sm text-[#6C696D]'>/person</span>
-                </p>
+                </h4>
             </div>
 
             <div className='text-base font-medium text-[#6C696D] flex items-center gap-1 mb-4'>
@@ -35,7 +35,7 @@ const DestinationCard = ({ destination }) => {
 
             <Link
                 href={`/destinations/${_id}`}
-                className='text-xl font-medium text-[#15A1BF] flex justify-start items-center gap-3'>
+                className='text-xl font-medium text-[#15A1BF] flex justify-start items-center gap-3 underline'>
                 BOOK NOW <MdArrowOutward className='w-7 h-7' />
             </Link>
         </div>

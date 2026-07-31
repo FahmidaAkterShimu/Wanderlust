@@ -1,2 +1,18 @@
 @import "tailwindcss";
 @import "@heroui/styles"; 
+@plugin "daisyui";
+
+/* Default font for the entire application */
+body {
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+/* Use Josefin Sans only for headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-josefin), sans-serif;
+}
