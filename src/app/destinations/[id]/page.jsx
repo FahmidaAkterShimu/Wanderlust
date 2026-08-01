@@ -1,5 +1,5 @@
+import { DeleteAlert } from '@/components/DeleteAlert';
 import { EditModal } from '@/components/EditModal';
-import { Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -27,9 +27,7 @@ const DestinationDetailsPage = async ({ params }) => {
                 {/* Buttons */}
                 <div className='flex justify-between items-center gap-2'>
                     <EditModal destination={destination} />
-                    <button className='border border-[#EF4444] text-[#EF4444] py-2.5 px-5 text-base font-medium flex items-center gap-1.5 cursor-pointer hover:bg-[#EF4444]/20'>
-                        <Trash2 className='w-5 h-5' /> Cancel
-                    </button>
+                    <DeleteAlert destination={destination} />
                 </div>
             </div>
 
