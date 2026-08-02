@@ -5,9 +5,21 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { PiUserBold } from 'react-icons/pi';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
+import { authClient } from '@/lib/auth-client';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const {
+        data: session,
+    } = authClient.useSession()
+
+    const user = session?.user
+    console.log(user)
+
+    const handleSignOut = async () => {
+        await authClient.signOut();
+    }
 
     return (
         <div className='absolute top-4 left-0 right-0 z-50 px-4'>
@@ -42,27 +54,38 @@ const Navbar = () => {
 
                 {/* Right */}
                 <ul className="flex items-center gap-5 text-base font-medium">
-                    <li>
-                        <Link href="/profile" className="flex items-center gap-1">
-                            <PiUserBold className="h-4 w-4" />
-                            <span className="hidden sm:inline">Profile</span>
-                        </Link>
-                    </li>
+                    {
+                        user ? <>
+                            <li>
+                                <Link href="/profile" className="flex items-center gap-1">
+                                    <PiUserBold className="h-4 w-4" />
+                                    <span className="hidden sm:inline">Profile</span>
+                                </Link>
+                            </li>
+                            <li onClick={handleSignOut} className='hidden lg:block'>
+                                <Link href="/login">
+                                    Logout
+                                </Link>
+                            </li>
+                        </>
+                            : <>
+                                <li className='hidden lg:block'>
+                                    <Link href="/login">Login</Link>
+                                </li>
 
-                    <li className='hidden lg:block'>
-                        <Link href="/login">Login</Link>
-                    </li>
+                                <li className='hidden lg:block'>
+                                    <Link href="/signup">Sign Up</Link>
+                                </li>
+                            </>
 
-                    <li className='hidden lg:block'>
-                        <Link href="/signup">Sign Up</Link>
-                    </li>
+                    }
                 </ul>
             </nav>
 
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="lg:hidden absolute left-0 top-full mt-3 w-full rounded-xl bg-white shadow-xl border z-50">
+                <div className="lg:hidden absolute left-0 top-full mt-3 w-sm rounded-xl bg-white shadow-xl border z-50">
                     <ul className="flex flex-col py-2 text-base font-medium">
 
                         <li>
@@ -106,26 +129,44 @@ const Navbar = () => {
                         </li>
 
                         <hr className="my-2" />
+                        {
+                            user ?
+                                <>
+                                    <li onClick={handleSignOut} >
+                                        <Link
+                                            href="/login"
+                                            onClick={() => setIsOpen(false)}
+                                            className="block w-xs mx-auto text-center rounded-full bg-black text-white py-3"
+                                        >
+                                            Logout
+                                        </Link>
+                                    </li>
+                                </>
+                                :
+                                <>
 
-                        <li>
-                            <Link
-                                href="/login"
-                                onClick={() => setIsOpen(false)}
-                                className="block px-6 py-3 hover:bg-gray-100"
-                            >
-                                Login
-                            </Link>
-                        </li>
+                                    <li>
+                                        <Link
+                                            href="/login"
+                                            onClick={() => setIsOpen(false)}
+                                            className="block px-6 py-3 hover:bg-gray-100"
+                                        >
+                                            Login
+                                        </Link>
+                                    </li>
 
-                        <li className="p-4">
-                            <Link
-                                href="/signup"
-                                onClick={() => setIsOpen(false)}
-                                className="block w-full text-center rounded-full bg-black text-white py-3"
-                            >
-                                Sign Up
-                            </Link>
-                        </li>
+                                    <li className="p-4">
+                                        <Link
+                                            href="/signup"
+                                            onClick={() => setIsOpen(false)}
+                                            className="block w-xs text-center rounded-full bg-black text-white py-3"
+                                        >
+                                            Sign Up
+                                        </Link>
+                                    </li>
+                                </>
+
+                        }
 
                     </ul>
                 </div>
