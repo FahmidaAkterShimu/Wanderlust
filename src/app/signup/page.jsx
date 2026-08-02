@@ -14,6 +14,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
     const onSubmit = async (e) => {
@@ -30,12 +31,12 @@ const SignUpPage = () => {
         });
 
         if (data) {
+            toast.success("Account created succesfully")
             redirect("/");
         }
 
         if (error) {
-            // toast
-            alert("Error");
+           toast.error(error);
         }
     };
 
