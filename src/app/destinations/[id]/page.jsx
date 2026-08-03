@@ -1,9 +1,10 @@
+import BookingCard from '@/components/BookingCard';
 import { DeleteAlert } from '@/components/DeleteAlert';
 import { EditModal } from '@/components/EditModal';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { FaArrowRight, FaStar } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 import { IoMdCheckmark } from 'react-icons/io';
 import { PiCalendarBold, PiMapPinLineBold } from 'react-icons/pi';
 import { RxArrowLeft } from 'react-icons/rx';
@@ -14,7 +15,7 @@ const DestinationDetailsPage = async ({ params }) => {
     const res = await fetch(`http://localhost:5000/destination/${id}`);
     const destination = await res.json();
 
-    const { destinationName, country, imageUrl, price, duration, departureDate, description } = destination;
+    const { destinationName, country, imageUrl, duration, description } = destination;
 
     return (
         <div className='max-w-7xl w-full mx-auto py-20 px-6 lg:px-2'>
@@ -86,18 +87,7 @@ const DestinationDetailsPage = async ({ params }) => {
 
                 {/* Right side */}
                 <div className='col-span-1'>
-                    <div className='space-y-1 mb-5'>
-                        <p className='text-base text-[#6C696D]'>Starting from</p>
-                        <h2 className='text-4xl font-semibold text-[#15A1BF]'>${price}</h2>
-                        <p className='text-base text-[#6C696D]'>per person</p>
-                    </div>
-
-                    <div className='mt-7 p-4 border border-[#EEEEEE] bg-[#F8FAFC]'>{departureDate}</div>
-
-                    <hr className='text-[#EFEFEF] my-5' />
-
-                    <button className='btn bg-[#15A1BF]
-                    text-base font-medium text-white w-full rounded-none py-4 px-6'>Book Now <FaArrowRight /></button>
+                    <BookingCard destination={destination} />
                 </div>
             </div>
 
