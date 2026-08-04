@@ -57,8 +57,7 @@ const BookingCard = ({ destination }) => {
 
             <button
                 onClick={handleBooking}
-                className='btn bg-[#15A1BF]
-                    text-base font-medium text-white w-full rounded-none py-4 px-6'>Book Now <FaArrowRight /></button>
+                className='btn bg-[#15A1BF] text-base font-medium text-white w-full rounded-none py-4 px-6'>Book Now <FaArrowRight /></button>
         </Card>
     );
 };
