@@ -7,11 +7,13 @@ import { AlertDialog, Button } from "@heroui/react";
 export function BookingCancelAlert({ bookingId }) {
 
   const handleCancelBooking = async () => {
+    const { data: tokenData } = await authClient.tokne()
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${bookingId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`
       }
     })
 
